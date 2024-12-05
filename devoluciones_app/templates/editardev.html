@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<br>
+<div class='row'><!--fila-->
+    <div class="col-md-4 offset-md-4"><!--columna 1-->      
+        <H4>Editar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editDev/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtidd" name="txtidd" class="form-control"
+                        value="{{ndev.id_devo}}" minlength="5" maxlength="5" readonly required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtidv" name="txtidv" class="form-control"
+                        value="{{ndev.id_venta}}" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtcom" name="txtcom" class="form-control"
+                        value="{{ndev.id_comic}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="date" id="fec" name="fec" class="form-control"
+                        value="{{ndev.fecha_devo}}" maxlength="250">
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtmot" name="txtmot" class="form-control"
+                        value="{{ndev.motivo}}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="numcan" name="numcan" class="form-control"
+                        value="{{ndev.cantidad}}" maxlength="250">
+                    </div>
+                    
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtest" name="txtest" class="form-control"
+                        value="{{ndev.estado}}" maxlength="250">
+                    </div>
+                    
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+            </div>
+        </div><!--tarjeta-->
+    </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class='row'><!--fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna 1-->      
+        <H4>Registrar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/regisDev/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtidd" name="txtidd" class="form-control"
+                        placeholder="Codigo Devolucion" minlength="5" maxlength="5" required>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="number" id="txtidv" name="txtidv" class="form-control"
+                        placeholder="Codigo Venta" maxlength="5">
+                    </div>
+                    <div class="form-group " >
+                        <input type="text" id="txtcom" name="txtcom" class="form-control"
+                        placeholder="Codigo Comics" maxlength="5" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="date" id="fec" name="fec" class="form-control"
+                        placeholder="Fecha Devolucion"  required>
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="txtmot" name="txtmot" class="form-control"
+                        placeholder="Motivo" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="numcan" name="numcan" class="form-control"
+                        placeholder="cantidad" maxlength="250">
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtest" name="txtest" class="form-control"
+                        placeholder="Estado Comics" maxlength="250">
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+                <!--This is some text within a card body.-->
+            </div>
+        </div><!--tarjeta-->
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna 2-->
+        <h4>Lista Devolucion</h4>
+        <img class="w-50" src="{% static 'dev.jpg' %}" alt="" width="400" height="400">
+        <br>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_devolucion</th>
+                        <th scope="col">id_comic</th>
+                        <th scope="col">Id Venta</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Estado</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in ndev %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{m.id_devo}}</td>
+                            <td>{{m.id_venta}}</td>
+                            <td>{{m.id_comic}}</td>
+                            <td>{{m.fecha_devo}}</td>
+                            <td>{{m.motivo}}</td>
+                            <td>{{m.cantidad}}</td>
+                            <td>{{m.estado}}</td>   
+                            <td><a href="/selecDev/{{m.id_devo}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="/borrarDev/{{m.id_devo}}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}

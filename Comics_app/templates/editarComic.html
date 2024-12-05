@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<br>
+<div class='row'><!--fila-->
+    <div class="col-md-4 offset-md-4"><!--columna 1-->      
+        <H4>Editar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editCom/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" class="form-control"
+                        value="{{mComics.id_comics}}" minlength="5" maxlength="5" readonly required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        value="{{mComics.nombre}}" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtcate" name="txtcate" class="form-control"
+                        value="{{mComics.categoria}}" maxlength="50">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtaut" name="txtaut" class="form-control"
+                        value="{{mComics.autor}} " maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="txtser" name="txtser" class="form-control"
+                        value="{{mComics.serie}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="floatformat" id="numpre" name="numpre" class="form-control"
+                        value="{{mComics.precio}}" min="1" max="100" required>
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+                <!--This is some text within a card body.-->
+            </div>
+        </div><!--tarjeta-->
+    </div>
+{% endblock %}
