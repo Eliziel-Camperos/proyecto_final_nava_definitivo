@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<br>
+<div class='row'><!--fila-->
+    <div class="col-md-4 offset-md-4"><!--columna 1-->      
+        <H4>Editar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editTie/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" class="form-control"
+                        value="{{mTienda.id_tienda}}" minlength="5" maxlength="5" readonly required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        value="{{mTienda.nombre}}" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtdir" name="txtdir" class="form-control"
+                        value="{{mTienda.direccion}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="num" name="num" class="form-control"
+                        value="{{mTienda.telefono}}" maxlength='10' min="1"  required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtcor" name="txtcor" class="form-control"
+                        value="{{mTienda.coreo_elec}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txthor" name="txthor" class="form-control"
+                        value="{{mTienda.horario}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+            </div>
+        </div><!--tarjeta-->
+    </div>
+{% endblock %}

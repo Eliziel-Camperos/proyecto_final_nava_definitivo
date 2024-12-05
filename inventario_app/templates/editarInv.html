@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<br>
+<div class='row'><!--fila-->
+    <div class="col-md-4 offset-md-4"><!--columna 1-->      
+        <H4>Editar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editInv/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtinv" name="txtinv" class="form-control"
+                        value="{{mInventario.id_inven}}" minlength="5" maxlength="5" readonly required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtcom" name="txtcom" class="form-control"
+                        value="{{mInventario.id_comic}}" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtcan" name="txtcan" class="form-control"
+                        value="{{mInventario.cantidad_dispo}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="date" id="fec" name="fec" class="form-control"
+                        value="{{mInventario.fecha_entrada}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="txtubi" name="txtubi" class="form-control"
+                        value="{{mInventario.ubicacion}}" required>
+                    </div>
+                    
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtest" name="txtest" class="form-control"
+                        value="{{mInventario.estado}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="number" id="numtie" name="numtie" class="form-control"
+                        value="{{mInventario.id_tienda}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+            </div>
+        </div><!--tarjeta-->
+    </div>
+{% endblock %}

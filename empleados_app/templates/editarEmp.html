@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<br>
+<div class='row'><!--fila-->
+    <div class="col-md-4 offset-md-4"><!--columna 1-->      
+        <H4>Editar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editEmp/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" class="form-control"
+                        value="{{mEmpleado.id_empleado}}" minlength="5" maxlength="5" readonly required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        value="{{mEmpleado.nombre}}" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtape" name="txtape" class="form-control"
+                        value="{{mEmpleado.apellido}}" maxlength="50">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="num" name="num" class="form-control"
+                        value="{{mEmpleado.numero}}" maxlength='10' min="1"  required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtsex" name="txtsex" class="form-control"
+                        value="{{mEmpleado.sexo}}" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtpue" name="txtpue" class="form-control"
+                        value="{{mEmpleado.puesto}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="floatformat" id="numsal" name="numsal" class="form-control"
+                        value="{{mEmpleado.salario}}" min="1" max="100" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdir" name="txtdir" class="form-control"
+                        value="{{mEmpleado.direccion}}" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+                <!--This is some text within a card body.-->
+            </div>
+        </div><!--tarjeta-->
+    </div>
+{% endblock %}

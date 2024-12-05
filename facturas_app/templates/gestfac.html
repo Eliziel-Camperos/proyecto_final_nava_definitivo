@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class='row'><!--fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna 1-->      
+        <H4>Registrar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/regisFac/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtfac" name="txtfac" class="form-control"
+                        placeholder="Codigo Factura" minlength="5" maxlength="5" required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="numven" name="numven" class="form-control"
+                        placeholder="Codigo Venta" maxlength="5" required>
+                    </div>
+                    <div class="form-group ">
+                        <input type="date" id="fec" name="fec" class="form-control"
+                        placeholder="Fecha Factura"  required>
+                    </div> 
+                    <div class="form-group py-3">
+                        <input type="floatformat" id="numtot" name="numtot" class="form-control"
+                        placeholder="Total" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="txtmp" name="txtmp" class="form-control"
+                        placeholder="metodo de pago" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="numcli" name="numcli" class="form-control"
+                        placeholder="Codigo Cliente" maxlength="5">
+                    </div>
+                    <div class="form-group ">
+                        <input type="number" id="numdes" name="numdes" class="form-control"
+                        placeholder="Descuento Disponible" maxlength="4">
+                    </div>
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+                <!--This is some text within a card body.-->
+            </div>
+        </div><!--tarjeta-->
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna 2-->
+        <h4>Lista Facturas</h4>
+        <img class="w-50" src="{% static 'fact.jpg' %}" alt="" width="400" height="400">
+        <br>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">id facturA</th>
+                        <th scope="col">ID Venta</th>
+                        <th scope="col">fecha</th>
+                        <th scope="col">total</th>
+                        <th scope="col">metodo_pago</th>
+                        <th scope="col">id_cliente</th>
+                        <th scope="col">Descuento</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in nfac %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{m.id_factura}}</td>
+                            <td>{{m.id_venta}}</td>
+                            <td>{{m.fecha_fac}}</td>
+                            <td>{{m.total}}</td>
+                            <td>{{m.metodo_pago}}</td>
+                            <td>{{m.id_cliente}}</td>
+                            <td>{{m.descuento}}</td>   
+                            <td><a href="/selecfac/{{m.id_factura}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="/borrarfac/{{m.id_factura}}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}

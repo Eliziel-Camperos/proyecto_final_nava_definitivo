@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class='row'><!--fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna 1-->      
+        <H4>Registrar</H4>
+        <div class="card">
+            <div class="card-body">
+                <form action="/regisTienda/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" class="form-control"
+                        placeholder="Codigo Tienda" minlength="5" maxlength="5" required>
+                    </div>
+                    <div class="form-group py-3" >
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                        placeholder="Nombre Tienda" maxlength="100" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtdir" name="txtdir" class="form-control"
+                        placeholder="Direccion Tienda" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="num" name="num" class="form-control"
+                        placeholder="Numero Cel-Telefono" maxlength='10' min="1"  required>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <input type="text" id="txtcor" name="txtcor" class="form-control"
+                        placeholder="Correo Tienda" maxlength="250">
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txthor" name="txthor" class="form-control"
+                        placeholder="Horario Tienda" maxlength="250">
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div><!--FROMULARIO-->
+                </form>
+                <!--This is some text within a card body.-->
+            </div>
+        </div><!--tarjeta-->
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna 2-->
+        <h4>List Tienda</h4>
+        <img class="w-50" src="{% static 'tienda.jpg' %}" alt="" width="400" height="400">
+        <br>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Horario</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in mTienda %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{m.id_tienda}}</td>
+                            <td>{{m.nombre}}</td>
+                            <td>{{m.direccion}}</td>
+                            <td>{{m.telefono}}</td>
+                            <td>{{m.coreo_elec}}</td>
+                            <td>{{m.horario}}</td>
+                            <td><a href="selecTie/{{m.id_tienda}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarTie/{{m.id_tienda}}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock cuerpo %}
